@@ -11,3 +11,8 @@ spring:
         - classpath:user-schema.sql
         - classpath:oauth2-authorization-schema.sql
         - classpath:session.sql
+jwt:
+  key:
+    public: classpath:top_secret_keys/app.pub
+    private: classpath:top_secret_keys/app.key
+    id: secret
