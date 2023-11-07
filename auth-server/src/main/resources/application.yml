@@ -18,3 +18,8 @@ spring:
     url: jdbc:postgresql://localhost/postgres
     username: postgres
     password: 1111
+  sql:
+    init:
+      mode: always
+      schema-locations:
+        - classpath:oauth2-registered-client-schema.sql
