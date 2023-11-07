@@ -7,9 +7,9 @@ spring:
             require-authorization-consent: true
             registration:
               # mine / pass
-              client-id: mine
-              client-secret: "{bcrypt}$2a$10$paviCCEseXaAiWMS/4Jzz./SrRHW5u20rYgxSJKVaCquQsd.1Wm6S"
+              client-id: myclient
+              client-secret: "{bcrypt}$2a$10$EbXaUVnjrkKoixjefxT5N.PQ2QRSStEv7ZJlP0zIOYu5T8rE0FulO"
               authorization-grant-types: client_credentials, authorization_code, refresh_token
               redirect-uris: http://127.0.0.1:8082/login/oauth2/code/spring
-              scope: user.read,user.write,openid
+              scopes: user.read,user.write,openid
               client-authentication-methods: client_secret_basic
