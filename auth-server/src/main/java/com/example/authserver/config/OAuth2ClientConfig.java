@@ -24,7 +24,7 @@ public class OAuth2ClientConfig {
     }
 
     @Bean
-    ApplicationRunner runner(RegisteredClientRepository clientRepository) {
+    ApplicationRunner clientRunner(RegisteredClientRepository clientRepository) {
         return args -> {
             final String clientId = "myclient";
             if(clientRepository.findByClientId(clientId) == null) {

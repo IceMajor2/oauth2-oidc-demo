@@ -23,3 +23,4 @@ spring:
       mode: always
       schema-locations:
         - classpath:oauth2-registered-client-schema.sql
+        - classpath:user-schema.sql
