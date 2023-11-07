@@ -1,0 +1,14 @@
+spring:
+  security:
+    oauth2:
+      authorizationserver:
+        client:
+          my-client:
+            require-authorization-consent: true
+            registration:
+              client-id: mine
+              client-secret: "{noop}mine"
+              authorization-grant-types: client_credentials, authorization_code, refresh_token
+              redirect-uris: http://127.0.0.1:8082/login/oauth2/code/spring
+              scope: user.read,user.write,openid
+              client-authorization-methods: client_secret_basic
