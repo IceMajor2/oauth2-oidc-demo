@@ -4,11 +4,12 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 
 import javax.sql.DataSource;
-import java.util.Map;
 
 @Configuration
 public class UserConfig {
@@ -19,22 +20,16 @@ public class UserConfig {
     }
 
     @Bean
-    ApplicationRunner userRunner(UserDetailsManager userDetailsManager) {
+    ApplicationRunner userRunner(UserDetailsManager userDetailsManager, PasswordEncoder passwordEncoder) {
         return args -> {
-            var builder = User.builder().roles("USER");
-            var users = Map.of(
-                    "icem", "{bcrypt}$2a$10$Grgbrewh9IOriVGqoOq/COu6u3eH.E84NXdZkQIL3rhVQ0CwYlGj6",
-                    "admin", "{bcrypt}$2a$10$m.GLKllO4t2XlluDTA/HuOsravJWz73PqIzrDAUVwNDxBw4iBCFv6"
-            );
-            users.forEach((username, password) -> {
-                if (!userDetailsManager.userExists(username)) {
-                    var user = builder
-                            .username(username)
-                            .password(password)
-                            .build();
-                    userDetailsManager.createUser(user);
-                }
-            });
+            UserDetails admin = User.builder()
+                    .username("admin")
+                    .password(passwordEncoder.encode("admin"))
+                    .roles("admin")
+                    .build();
+            if (!userDetailsManager.userExists(admin.getUsername())) {
+                userDetailsManager.createUser(admin);
+            }
         };
     }
 }
