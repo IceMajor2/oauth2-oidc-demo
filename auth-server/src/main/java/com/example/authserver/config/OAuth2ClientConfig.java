@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.server.authorization.client.JdbcRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
+import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
 
 import java.util.Set;
 import java.util.UUID;
@@ -42,6 +43,9 @@ public class OAuth2ClientConfig {
                                 .scopes(scopes -> scopes.addAll(Set.of(
                                         "user.read", "user.write", OidcScopes.OPENID
                                 )))
+                                .clientSettings(ClientSettings.builder()
+                                        .requireAuthorizationConsent(true)
+                                        .build())
                                 .build()
                 );
             }
