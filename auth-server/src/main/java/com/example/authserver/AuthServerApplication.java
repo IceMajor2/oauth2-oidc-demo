@@ -18,8 +18,8 @@ public class AuthServerApplication {
 	UserDetailsService userDetailsService() {
 		var userBuilder = User.builder();
 		return new InMemoryUserDetailsManager(
-				userBuilder.roles("USER").username("icem").password("{noop}pass").build(),
-				userBuilder.roles("ADMIN").username("admin").password("{noop}pass").build()
+				userBuilder.roles("USER").username("icem").password("{bcrypt}$2a$10$.poMBYzJmL9XvrzPJqv8yOuMl75RDxumEp9H9RUFiMXpMqYIfjpOi").build(),
+				userBuilder.roles("ADMIN").username("admin").password("{bcrypt}$2a$10$3XSlW1qF0lp/xmFYGTJLL.Uc8x7VHOc7tbfO7HyFhSzD8KLq/RNAS").build()
 		);
 	}
 }
