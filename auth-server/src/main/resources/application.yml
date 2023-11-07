@@ -10,3 +10,4 @@ spring:
         - classpath:oauth2-registered-client-schema.sql
         - classpath:user-schema.sql
         - classpath:oauth2-authorization-schema.sql
+        - classpath:session.sql
